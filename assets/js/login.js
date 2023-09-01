@@ -1,7 +1,7 @@
 let form = document.querySelector("form");
 let username = form.name;
 let password = form.password;
-let api = "http://puzzle-technology.web.app/";
+let api = "http://puzzle-technology.000webhostapp.com/";
 let audio = new Audio("./assets/sounds/error.mp3");
 
 form.addEventListener("submit", async (event) => {
