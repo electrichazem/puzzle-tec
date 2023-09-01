@@ -1,5 +1,5 @@
 
-export let api = "http://192.168.1.2/puzzle-tech/";
+export let api = "http://puzzle-technology.web.app/";
 
 export async function Login(){
     let name = localStorage.getItem("name");
