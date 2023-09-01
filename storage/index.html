@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <link rel="stylesheet" href="../assets/css/root.css">
+    <link rel="stylesheet" href="../assets/css/buy.css">
+    <link rel="stylesheet" href="../assets/css/aside.css">
+    <link rel="stylesheet" href="../assets/css/storage.css">
+    <title>Invoices</title>
+</head>
+<body>
+    <aside>
+        <img src="../assets/images/cart.png" alt="" val="sell">
+        <img src="../assets/images/warehouse.png" alt="" val="storage">
+        <img src="../assets/images/budget.png" alt="" val="buy">
+        <img src="../assets/images/trade.png" alt="" val="invoices">
+        <img src="../assets/images/analysis.png" alt="" val="report">
+        <img src="../assets/images/return-box.png" alt="" val="returns">
+        <img src="../assets/images/employee.png" alt="" val="employee">
+        <img src="../assets/images/expenses.png" alt="" val="store">
+    </aside>
+    <main>
+        <header>
+            <a href="/dashboard/">
+                <img src="../../assets/images/logo.png" alt="image">
+            </a>
+            <span>تسجيل خروج</span>
+        </header>
+        <span class="title">المخزن</span>
+        <div class="actions">
+            <div class="serach-by-code">بحث بالكود</div>
+            <div class="search-by-name">بحث بالإسم</div>
+            <div class="edit-category-price">تعديل سعر منتج (كمية)</div>
+            <div class="edit-product-price">  تعديل سعر منتج (فردي)</div>
+            <div class="del-product">حذف منتج</div>
+            <div class="add-product">إضافة منتج</div>
+            <div class="show-table-actions">
+             عناصر التحكم
+            </div>
+        </div>
+        <div class="search-by-code-widget widget">
+            <span>بحث بالكود</span>
+            <input type="text" name="code" placeholder="الكود" autocomplete="off"  />
+            <table>
+                <thead>
+                    <tr>
+                        <td>الإسم</td>
+                        <td>سعر الشراء</td>
+                        <td>سعر المستهلك</td>
+                        <td>الموكل</td>
+                        <td>الضمان</td>
+                        <td>تاريخ الإضافة</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="search-by-name-widget widget">
+            <span>بحث بالإسم</span>
+            <input type="text" name="name" placeholder="الإسم" autocomplete="off"  />
+            <table>
+                <thead>
+                    <tr>
+                        <td>العدد</td>
+                        <td>الإسم</td>
+                        <td>الكود</td>
+                        <td>سعر الشراء</td>
+                        <td>سعر المستهلك</td>
+                        <td>الموكل</td>
+                        <td>الضمان</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="edit-category-price-widget widget">
+            <div class="btn">حفظ</div>
+            <span>تعديل سعر صنف</span>
+            <input type="text" name="name" placeholder="الإسم" autocomplete="off" />
+            <input type="text" name="client" placeholder="الموكل" autocomplete="off" />
+            <input type="text" name="guarantee" placeholder="الضمان" autocomplete="off" />
+            <input type="date" name="date" placeholder="التاريخ" autocomplete="off" />
+
+
+            <input type="number" name="customer-price" placeholder="سعر المستهلك" autocomplete="off" />
+            <input type="number" name="price" placeholder="سعر الشراء" autocomplete="off" />
+        </div>
+        <div class="edit-product-price-widget widget">
+            <div class="btn">حفظ</div>
+            <span>تعديل سعر  منتج</span>
+            <input type="text" name="code" placeholder="الكود" autocomplete="off" />
+            <input type="number" name="customer-price" placeholder="سعر المستهلك" autocomplete="off" />
+            <input type="number" name="price" placeholder="سعر الشراء" autocomplete="off" />
+        </div>
+        <div class="delete-product-widget widget">
+            <div class="btn">حفظ</div>
+            <span>حذف منتج</span>
+            <input type="text" name="code" placeholder="الكود" autocomplete="off" />
+        </div>
+        <div class="add-product-widget widget">
+            <div class="btn">حفظ</div>
+            <span>إضافة منتج</span>
+            <input type="text" name="name" placeholder="الإسم" autocomplete="off"/>
+            <input type="text" name="client" placeholder="الموكل" autocomplete="off"/>
+            <input type="text" name="guarantee" placeholder="الضمان" autocomplete="off"/>
+            <input type="text" name="code" placeholder="الكود" autocomplete="off"/>
+            <input type="number" name="price" placeholder="سعر المستهلك" autocomplete="off"/>
+            <input type="number" name="customer-price" placeholder="سعر الشراء" autocomplete="off"/>
+
+            <input type="date" name="date" placeholder="التاريخ" autocomplete="off"/>
+            <input type="text" name="total" placeholder="الإجمالي" autocomplete="off"/>
+            <table>
+                <thead>
+                    <tr>
+                        <td>الإسم</td>
+                        <td>الموكل</td>
+                        <td>الضمان</td>
+                        <td>الكود</td>
+                        <td>سعر المستهلك</td>
+                        <td>سعر الشراء</td>                        
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <table class="products">
+            <thead>
+                <tr>
+                    <td>الرقم</td>
+                    <td>الإسم</td>
+                    <td>الكود</td>
+                    <td>سعر الشراء</td>
+                    <td>سعر المستهلك</td>
+                    <td>الموكل</td>
+                    <td>الضمان</td>
+                    <td>التاريخ</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </main>
+
+    <div class="overlay"></div>
+    <div class="loader"></div>
+    <script src="../assets/js/storage.js" type="module"></script>
+    
+</body>
+</html>

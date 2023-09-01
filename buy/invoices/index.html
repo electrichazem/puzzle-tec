@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <link rel="stylesheet" href="../../assets/css/root.css">
+    <link rel="stylesheet" href="../../assets/css/buy.css">
+    <link rel="stylesheet" href="../../assets/css/aside.css">
+    <link rel="stylesheet" href="../../assets/css/invoices.css">
+    <title>Invoices</title>
+</head>
+<body>
+    <aside>
+        <img src="../../assets/images/cart.png" alt="" val="sell">
+        <img src="../../assets/images/warehouse.png" alt="" val="storage">
+        <img src="../../assets/images/budget.png" alt="" val="buy">
+        <img src="../../assets/images/trade.png" alt="" val="invoices">
+        <img src="../../assets/images/analysis.png" alt="" val="report">
+        <img src="../../assets/images/return-box.png" alt="" val="returns">
+        <img src="../../assets/images/employee.png" alt="" val="employee">
+        <img src="../../assets/images/expenses.png" alt="" val="store">
+    </aside>
+    <main>
+        <header>
+            <img src="../../assets/images/logo.png" alt="image">
+            <span>تسجيل خروج</span>
+        </header>
+        <span class="title"></span>
+        <div class="actions">
+            <div id="hide">إخفاء الفواتير المغلقة</div>
+            <div id="add">إضافة فاتورة</div>
+        </div>
+
+        <section class="analysis">
+            <div class="con1">
+                
+            </div>
+            <div class="con2">
+
+            </div>
+        </section>
+        <div class="add-receipt">
+            <div class="btn">إنهاء</div>
+            <span>إضافة فاتورة</span>
+            <input type="text" name="name" placeholder="الإسم"/>
+            <input type="text" name="client" placeholder="الموكل"/>
+            <input type="text" name="guarantee" placeholder="الضمان"/>
+            <input type="text" name="code" placeholder="الكود" />
+            <input type="date" name="date" placeholder="التاريخ"/>
+            <input type="text" name="total" placeholder="الإجمالي" />
+            <input type="text" name="paid" placeholder="المدفوع" />
+            <table>
+                <thead>
+                    <tr>
+                        <td>الإسم</td>
+                        <td>الكود</td>
+                        <td>المورد</td>
+                        <td>الضمان</td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="edit-receipt">
+            <div class="btn">إنهاء</div>
+            <span>تعديل</span>
+            <input type="text" name="total" placeholder="الإجمالي" readonly/>
+            <input type="text" name="paid" placeholder="المدفوع" readonly/>
+            <input type="text" name="net" placeholder="المتبقي" readonly/>
+            <input type="num" name="added-value" placeholder="القيمة المضافة"/>
+        </div>
+        <table class="invoices">
+                <thead>
+                    <tr>
+                        <td>تاربخ الإنشاء</td>
+                        <td>تاريخ أخر معاملة</td>
+                        <td>إجمالي الفاتورة</td>
+                        <td>المدفوع</td>
+                        <td>الباقي</td>
+                        <td>الحالة</td>
+                        <td>تعديل</td>
+                        <td>عرض</td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+        </table>
+        <div class="receipt-details">
+            <span>الفاتورة</span>
+            <input type="tex" name="date" placeholder="التاريخ"/>
+            <input type="text" name="total" placeholder="الإجمالي" />
+            <input type="text" name="paid" placeholder="المدفوع" />
+            <input type="text" name="product-num" placeholder="عدد العناصر" />
+
+            <table class="t1">
+                <thead>
+                    <tr>
+                        <td>الإسم</td>
+                        <td>الكود</td>
+                        <td>المورد</td>
+                        <td>الضمان</td>
+                    </tr>
+                </thead>
+                <tbody>
+            </tbody>
+            </table>
+            <table class="t2">
+                <thead>
+                    <tr>
+                        <td>التاريخ</td>
+                        <td>القيمة المضافة</td>
+                        <td>إجمالي المدفوع</td>
+                        <td>المتبقي</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </main>
+
+    <div class="overlay"></div>
+    <div class="loader"></div>
+    <script src="../../assets/js/inovoices.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <link rel="stylesheet" href="../assets/css/root.css">
+    <link rel="stylesheet" href="../assets/css/buy.css">
+    <link rel="stylesheet" href="../assets/css/aside.css">
+    <title>Buy</title>
+</head>
+<body>
+    <aside>
+        <img src="../assets/images/cart.png" alt="" val="sell">
+        <img src="../assets/images/warehouse.png" alt="" val="storage">
+        <img src="../assets/images/budget.png" alt="" val="buy">
+        <img src="../assets/images/trade.png" alt="" val="invoices">
+        <img src="../assets/images/analysis.png" alt="" val="report">
+        <img src="../assets/images/return-box.png" alt="" val="returns">
+        <img src="../assets/images/employee.png" alt="" val="employee">
+        <img src="../assets/images/expenses.png" alt="" val="store">
+    </aside>
+    <main>
+        <header>
+            <img src="../assets/images/logo.png" alt="image">
+            <span>تسجيل خروج</span>
+        </header>
+        <span class="title">نقطة الشراء</span>
+        <div class="actions">
+            <div class="del">حذف</div>
+            <div class="add">إضافة</div>
+        </div>
+    </main>
+    <div class="add-seller">
+        <div class="btn">إنهاء</div>
+        <span>إضافة تاجر/موكل</span>
+        <input type="text" name="name" placeholder="الإسم"/>
+        <select name="type">
+            <option value="تاجر">تاجر</option>
+            <option value="موكل">موكل</option>
+        </select>
+        <input type="date" name="date" placeholder="التاريخ" />
+    </div>
+    <div class="del-seller">
+        <div class="btn">إنهاء</div>
+        <span>حذف تاجر/موكل</span>
+        <input type="text" name="name" placeholder="الإسم"/>
+    </div>
+    <div class="sellers">
+    </div>
+    <div class="overlay"></div>
+    <div class="loader"></div>
+    <script src="../assets/js/buy.js" type="module"></script>
+    
+</body>
+</html>
