@@ -1,10 +1,10 @@
-import { WareHouseFunctions, Login , api } from "./functions.js";
+import { JSFunctions, Login } from "./functions.js";
 
 let items = document.querySelectorAll("aside img");
 let overlay = document.querySelector(".overlay");
 let loader = document.querySelector(".loader");
 
-let functions = new WareHouseFunctions();
+let functions = new JSFunctions();
 let products = [];
 
 // Widgets
@@ -45,34 +45,6 @@ async function getProducts(){
         let dataItems = ["name","serial","price","customerprice","client","gurantee","date"];
         table.innerHTML = "";
     
-        // const items = {};
-        // for (const json of data) {
-        //     const item = JSON.parse(json);
-        //     const key = `${item.name}|${item.client}|${item.gurantee}|${item.price}|${item.customerprice}`;
-        
-        //     if (!items[key]) {
-        //         items[key] = {
-        //             name: item.name,
-        //             serial: "",
-        //             client: item.client,
-        //             gurantee: item.gurantee,
-        //             price: item.price,
-        //             customerprice: item.customerprice,
-        //             date: item.date
-        //         };
-        //     }
-        
-        //     if (item.serial && !items[key].serial.includes(item.serial)) {
-        //         if (items[key].serial) {
-        //             items[key].serial += "<br>";
-        //         }
-        //         items[key].serial += item.serial;
-        //     }
-        // }
-        
-        // const groupedArray = Object.values(items);
-        // console.log(JSON.stringify(groupedArray) )
-        console.log(JSON.parse(data[0]) );
         for(let item of data) {
             item = JSON.parse(item)
             // Num
@@ -178,20 +150,25 @@ searchByCode.addEventListener("click",()=>{
 let searchByCodeInput = document.querySelector(".search-by-code-widget input");
 searchByCodeInput.addEventListener('keydown', async function(event) {
     if (event.key === 'Enter') {
+        let table = document.querySelector(".search-by-code-widget table tbody");
+        table.innerHTML = ""
         if (searchByCodeInput.value.length != 0) {
             let data = await functions.searchByCode(searchByCodeInput.value);
-            console.log(data)
-            let dataItems = ["name","price","customerprice","client","gurantee","date"];
-            let table = document.querySelector(".search-by-code-widget table tbody");
-            // Row
-            let row = document.createElement("tr");
-            for (const item of dataItems) {
-                let td = document.createElement("td");
-                td.textContent = data[item];
-                row.appendChild(td);
+            if (data.state === "Not found") {
+                alert("لم يتم العثور علي منتح بهذا الكود");
+            }else {
+                let dataItems = ["name","price","customerprice","client","gurantee","date"];
+                
+                // Row
+                let row = document.createElement("tr");
+                for (const item of dataItems) {
+                    let td = document.createElement("td");
+                    td.textContent = data[item];
+                    row.appendChild(td);
+                }
+                table.appendChild(row);
+                searchByCodeInput.value = "";
             }
-            table.appendChild(row);
-            searchByCodeInput.value = "";
         }
     }
 });
@@ -207,13 +184,17 @@ let searchByNameInput = document.querySelector(".search-by-name-widget input");
 searchByNameInput.addEventListener('keydown', async function(event) {
     if (event.key === 'Enter') {
         if (searchByNameInput.value.length != 0) {
+            document.querySelector(".search-by-name-widget table tbody").innerHTML = "";
             let data = await functions.searchByName(searchByNameInput.value);
-
+            if (data.state == "Not found") {
+                alert("لم يتم العثور علي منتجات بهذا الإسم");
+            }else {
             // Row
             if (data.state != "Not found") {
                 addItems(data) ;
             }
             searchByNameInput.value = "";
+            }
         }
     }
 });
@@ -250,7 +231,7 @@ function addItems(data){
     for(let item of groupedArray) {        
         let tr  = document.createElement("tr");
         let len = item["serial"].split("<br/>").length;
-        console.log(len)
+
         let lenElement = document.createElement("td");
         lenElement.textContent = len
         tr.appendChild(lenElement);
@@ -274,7 +255,6 @@ function addItems(data){
 }
 function clickEvent(data, index) {
     data = JSON.parse(data[index])
-    console.log(data)
     searchByNameWidget.style.display = "none";
     editCategoryPriceWidget.style.display = "flex";
     let name = document.querySelector(".edit-category-price-widget input[name='name']");
@@ -305,14 +285,14 @@ editCategoryPriceButton.addEventListener('click', async function(event) {
     let guarantee = document.querySelector(".edit-category-price-widget input[name='guarantee']").value.trim();
     let client = document.querySelector(".edit-category-price-widget input[name='client']").value.trim();
     let date = document.querySelector(".edit-category-price-widget input[name='date']").value.trim();
-
+    date = date.split("-").reverse().join("-");
 
         if (name.length != 0 && price.length != 0 && customerPrice.length !=0 && guarantee.length !=0 && client.length != 0 && date.length != 0) {
+            editCategoryPriceWidget.style.display = "none";
             let data = await functions.editCategoryPrice(name,price,customerPrice,guarantee,client,date);
-            console.log(data)
             if (data.state == "edited") {
                 alert(`تم تعديل سعر ${data.num} قطع`);
-                await getProducts();
+                location.reload()
             }
         }else {
             alert("أدخل البيانات كاملة")
@@ -328,17 +308,26 @@ editProductPrice.addEventListener("click",()=>{
 });
 let editProductPriceButton = document.querySelector(".edit-product-price-widget .btn");
 editProductPriceButton.addEventListener('click', async function(event) {
-    console.log("fff")
     let code = document.querySelector(".edit-product-price-widget input[name='code']").value.trim();
     let price = document.querySelector(".edit-product-price-widget input[name='price']").value.trim();
     let customerPrice = document.querySelector(".edit-product-price-widget input[name='customer-price']").value.trim();
 
         if (code.length != 0 && price.length != 0 && customerPrice.length !=0) {
-            let data = await functions.editProductPrice(code,price,customerPrice);
-            console.log(data)
-            if (data.state == "edited") {
-                alert(`تم تعديل سعر ${data.num} قطع`)
-            }
+                editProductPriceWidget.style.display = "none";
+                    let data = await functions.editProductPrice(code,price,customerPrice);
+                    if (data.state == "edited") {
+                        alert(`تم تعديل سعر ${data.num} قطع`)
+                        overlay.style.display = "none";
+                        location.reload()
+
+                    }else if (data.state == "Not found"){
+                        alert(`منتح غير موجود`);
+                        overlay.style.display = "none"
+
+                    }else {
+                        alert(`خطأ`);
+                        overlay.style.display = "none"
+                    }
         }else {
             alert("أدخل البيانات كاملة")
         }
@@ -363,11 +352,20 @@ deleteProductButton.addEventListener('click', async function(event) {
         code = code.substring(0, index);
     }
         if (code.length != 0) {
-            let data = await functions.deleteProduct(code,limit);
-            console.log(data)
-            if (data.state == "deleted") {
-                alert(`تم حذف  ${data.num} قطع`)
-            }
+
+                try {
+                    let data = await functions.deleteProduct(code,limit);
+                    if (data.state == "deleted") {
+                        alert(`تم حذف  ${data.num} قطع`);
+                        location.reload()
+                    }else if (data.state == "Not found"){
+                        alert(`غير موجود`)
+                    }else {
+                        alert(`خطأ`);
+                    }
+                }catch {
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                }
         }else {
             alert("أدخل البيانات كاملة")
         }
@@ -381,9 +379,11 @@ addProduct.addEventListener("click",()=>{
 });
 let addProductButton = document.querySelector(".add-product-widget .btn");
 addProductButton.addEventListener('click', async function(event) {
-
         if (products.length != 0) {
-            let data = await functions.addProduct(JSON.stringify(products));
+            addProductWidget.style.display = "none";
+            await functions.addProduct(JSON.stringify(products));
+            overlay.style.display = "none";
+
         }else {
             alert("أنت لم تدخل أي منتجات بالفعل")
         }
@@ -408,6 +408,7 @@ function addItem(code){
     let totalPrice = document.querySelector(".add-product-widget input[name='total']");
     let total = 0;
     let date = document.querySelector(".add-product-widget input[name='date']").value.trim();
+    date = date.split("-").reverse().join("-");
     if (name.length != 0 && client.length != 0 && guarantee.length != 0 && price.length != 0 && customerPrice.length != 0 && date.length != 0) {
         products.push({"name": name,"serial": code,"gurantee": guarantee,"client": client,"price": price,"customerprice": customerPrice,"date": date});
         products.forEach((ele)=>{
@@ -428,23 +429,29 @@ function addItem(code){
         let customerPriceItem = document.createElement("td");
         customerPriceItem.textContent = customerPrice;
         row.appendChild(nameItem);
-        row.appendChild(codeItem);
         row.appendChild(clientItem);
         row.appendChild(guranteeItem);
-        row.appendChild(priceItem);
+        row.appendChild(codeItem);
+
         row.appendChild(customerPriceItem);
+        row.appendChild(priceItem);
         table.appendChild(row);
     }else {
         alert("أدخل البيانات كاملة");
     }
 }
 
-
+let state = true;
 let showTableActions = document.querySelector(".show-table-actions");
 showTableActions.addEventListener("click",()=>{
     let edits = document.querySelectorAll(".edit-element,.del-element");
     edits.forEach((ele)=>{
         ele.classList.toggle("hidden");
     });
-
+    if (state) {
+        showTableActions.innerHTML = "إظهار عناصر التحكم"
+    }else {
+        showTableActions.innerHTML = "إخفاء عناصر التحكم"
+    }
+    state = !state;
 });

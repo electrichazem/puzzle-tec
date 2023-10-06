@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <link rel="stylesheet" href="../assets/css/root.css">
+    <link rel="stylesheet" href="../assets/css/aside.css">
+    <link rel="stylesheet" href="../assets/css/reports.css">
+    <title>التقارير</title>
+</head>
+<body>
+    <aside>
+        <img src="../assets/images/cart.png" alt="" val="sell" title="نقطة البيع">
+        <img src="../assets/images/warehouse.png" alt="" val="storage" title="المخزن">
+        <img src="../assets/images/budget.png" alt="" val="buy" title="التجار & الموكلين">
+        <img src="../assets/images/trade.png" alt="" val="invoices" title="الفواتير">
+        <img src="../assets/images/analysis.png" alt="" val="reports" title="التقارير">
+        <img src="../assets/images/return-box.png" alt="" val="returns" title="المرتجعات">
+        <img src="../assets/images/employee.png" alt="" val="employees" title="الموظفين">
+        <img src="../assets/images/expenses.png" alt="" val="store" title="مصروفات المحل">
+    </aside>
+    <main>
+        <header>
+            <a href="/dashboard/">
+                <img src="../../assets/images/logo.png" alt="image">
+            </a>
+            <span>تسجيل خروج</span>
+        </header>
+        <span class="title">التقارير</span>
+        <div class="actions">
+            <div id="monthly-report-btn">تقرير شهري</div>
+            <div id="yearly-report-btn">تقرير سنوي</div>
+            <div id="custom-report-btn">تقرير مدة</div>
+
+        </div>
+        <div class="custom-date">
+            <div>
+                <span>من</span>
+                <input type="date" name="from">
+            </div>
+            <div>
+                <span>إالي: </span>
+                <input type="date" name="to">
+            </div>
+
+        </div>
+        <div class="divider"></div>
+        <section class="report">
+            <h2>التقرير</h2>
+            <div class="con">
+                <span class="blue">الأكثر مبيعا: </span>
+                <span class="best-selling"></span>
+            </div>
+            <div class="con">
+                <div>
+                    <span class="blue">الدخل: </span>
+                    <span class="total"></span>
+                </div>
+                <div>
+                    <span class="blue">الربح: </span>
+                    <span class="profit"></span>
+                </div>
+            </div>
+            <div class="losses con">
+                <div>
+                    <span class="red">المرتجعات: </span>
+                    <span class="returns"></span>
+                </div>
+                <div>
+                    <span class="red">مصاريف المحل: </span>
+                    <span class="expenses"></span>
+                </div>
+                <div>
+                    <span class="red">مرتبات الموظفين: </span>
+                    <span class="salaries"></span>
+                </div>
+                <div>
+                    <span class="red">=</span>
+                    <span class="total-loss"></span>
+                </div>
+            </div>
+            <div class="con">
+                <span class="green">صافي الربح: </span>
+                <span class="net"></span>
+            </div>
+            <h3 class="t1">منتجات علي وشك النفاذ</h3>
+            <table class="running-out">
+                <thead>
+                    <tr>
+                        <td>الإسم</td>
+                        <td>العدد</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <h3 class="t2">منتجات نفذت</h3>
+            <table class="sold-out">
+                <thead>
+                    <tr>
+                        <td>الإسم</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </main>
+    
+    <div class="overlay"></div>
+    <div class="loader"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="../assets/js/reports.js" type="module"></script>
+    
+</body>
+</html>

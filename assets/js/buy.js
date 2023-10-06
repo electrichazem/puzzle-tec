@@ -2,6 +2,12 @@ import { Login , api } from "./functions.js";
 
 let loader = document.querySelector(".loader");
 
+
+
+let addSellerWidget = document.querySelector(".add-seller");
+let delSellerWidget = document.querySelector(".del-seller");
+
+
 async function getSellers() {
     let name = localStorage.getItem("name");
     let password = localStorage.getItem("password");
@@ -49,8 +55,8 @@ async function getSellers() {
 let overlay = document.querySelector(".overlay");
 overlay.addEventListener("click",()=>{
     overlay.style.display = "none";
-    document.querySelector(".add-seller").style.display = "none";
-    document.querySelector(".del-seller").style.display = "none";
+    addSellerWidget.style.display = "none";
+    delSellerWidget.style.display = "none";
 })
 
 
@@ -97,22 +103,30 @@ add.addEventListener("click",async()=>{
     let seller = document.querySelector(`.add-seller input[name='name']`).value.trim();
     let type = document.querySelector(`.add-seller select[name='type']`).value;
     let date = document.querySelector(`.add-seller input[name='date']`).value;
-    console.log(`${api}add_seller.php?name=${name}&password=${password}&seller=${seller}&type${type}&create_date=${date}`)
+    date = date.split("-").reverse().join("-");
 
     if (seller.length < 1 || date.length < 1) {
         alert(`يجب إدخال البيانات كاملة`);
     }else {
         for (let i = 0; i < 100; i++) {
-            let response = await fetch(`${api}add_seller.php?name=${name}&password=${password}&seller=${seller}&type=${type}&create_date=${date}`);
-            let responseData = JSON.parse(await response.text());
-            if (responseData.state === "exist") {
-                alert(`${type} موجود بالفعل`);
-                break;
-            } else if (responseData.state === true) {
-                alert("تم الإضافة بنجاح");
-                getSellers();
-                break;
+            try {
+                addSellerWidget.style.display = "none";
+                let response = await fetch(`${api}add_seller.php?name=${name}&password=${password}&seller=${seller}&type=${type}&create_date=${date}`);
+                let responseData = JSON.parse(await response.text());
+                if (responseData.state === "exist") {
+                    alert(`${type} موجود بالفعل`);
+                    overlay.style.display = "none";
+                    break;
+                } else if (responseData.state === true) {
+                    alert("تم الإضافة بنجاح");
+                    overlay.style.display = "none";
+                    getSellers();
+                    break;
+                }
+            }catch {
+                await new Promise(resolve => setTimeout(resolve, 1000));
             }
+            
         }
     }
 
@@ -131,25 +145,31 @@ del.addEventListener("click",async()=>{
     let name = localStorage.getItem("name");
     let password = localStorage.getItem("password");
     let seller = document.querySelector(`.del-seller input[name='name']`).value.trim();
-    console.log(`${api}del_seller.php?name=${name}&password=${password}&seller=${seller}`)
 
     if (seller.length < 1) {
         alert(`يجب إدخال البيانات كاملة`);
     }else {
         for (let i = 0; i < 100; i++) {
-            let response = await fetch(`${api}del_seller.php?name=${name}&password=${password}&seller=${seller}`);
-            let responseData = JSON.parse(await response.text());
-            if (responseData.state === "not_found") {
-                alert(`غير موجود`);
-                break;
-            } else if (responseData.state === "deleted") {
-                alert("تم الحذف بنجاح");
-                await getSellers();
-                break;
-            }
-            else if (responseData.state === "false") {
-                alert("خطأ");
-                break;
+            try {
+                delSellerWidget.style.display = "none";
+                let response = await fetch(`${api}del_seller.php?name=${name}&password=${password}&seller=${seller}`);
+                let responseData = JSON.parse(await response.text());
+                if (responseData.state === "not_found") {
+                    alert(`غير موجود`);
+                    overlay.style.display = "none";
+                    break;
+                } else if (responseData.state === "deleted") {
+                    alert("تم الحذف بنجاح");
+                    overlay.style.display = "none";
+                    await getSellers();
+                    break;
+                }
+                else if (responseData.state === "false") {
+                    alert("خطأ");
+                    break;
+                }
+            }catch {
+                await new Promise(resolve => setTimeout(resolve, 1000));
             }
         }
     }

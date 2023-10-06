@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <link rel="stylesheet" href="../assets/css/root.css">
+    <link rel="stylesheet" href="../assets/css/buy.css">
+    <link rel="stylesheet" href="../assets/css/aside.css">
+    <link rel="stylesheet" href="../assets/css/sell.css">
+    <title>نقطة البيع</title>
+</head>
+<body>
+    <aside>
+        <img src="../assets/images/cart.png" alt="" val="sell" title="نقطة البيع">
+        <img src="../assets/images/warehouse.png" alt="" val="storage" title="المخزن">
+        <img src="../assets/images/budget.png" alt="" val="buy" title="التجار & الموكلين">
+        <img src="../assets/images/trade.png" alt="" val="invoices" title="الفواتير">
+        <img src="../assets/images/analysis.png" alt="" val="reports" title="التقارير">
+        <img src="../assets/images/return-box.png" alt="" val="returns" title="المرتجعات">
+        <img src="../assets/images/employee.png" alt="" val="employees" title="الموظفين">
+        <img src="../assets/images/expenses.png" alt="" val="store" title="مصروفات المحل">
+    </aside>
+    <main>
+        <header>
+            <a href="/dashboard/">
+                <img src="../../assets/images/logo.png" alt="image">
+            </a>
+            <span>تسجيل خروج</span>
+        </header>
+        <span class="title">نقطة البيع</span>
+        <div class="actions">
+            <div class="open-customer-invoice">فتح فاتورة مستهلك</div>
+            <div class="open-seller-invoice">فاتح فاتورة تاجر</div>
+            <div class="cancle-invoice">إلغاء الفاتورة</div>
+        </div>
+        <div class="divider"></div>
+        <div class="customer-invoice invoice">
+            <span>فاتورة مستهلك</span>
+            <input type="text" name="serial" placeholder="الكود" autocomplete="off"/>
+            <div class="add-manual">
+                <input type="text" name="name" placeholder="الإسم" autocomplete="off"/>
+                <input type="number" name="customer-price" placeholder="سعر المستهلك" autocomplete="off"/>
+                <input type="number" name="price" placeholder="سعر الشراء" autocomplete="off"/>
+                <input type="text" name="client" placeholder="الموكل" autocomplete="off"/>
+                <input type="text" name="gurantee" placeholder="الضمان" autocomplete="off"/>
+                <input type="text" name="code" placeholder="الكود" autocomplete="off"/>
+            </div>
+            <input type="text" name="total" placeholder="الإجمالي: 0" readonly>
+            <div class="actions">
+                <div class="complete-sell">إتمام بيع</div>
+                <div class="print-receipt">طباعة أخر فاتورة</div>
+            </div>
+            <div class="divider"></div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>No.</td>
+                        <td>الإسم</td>
+                        <td>الكود</td>
+                        <td>السعر</td>
+                        <td>الموكل</td>
+                        <td>الضمان</td>
+                        <td>الخصم</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="seller-invoice invoice">
+            <span>فاتورة تاجر</span>
+            <input type="text" name="serial" placeholder="الكود"/>
+            <div class="add-manual">
+                <input type="text" name="name" placeholder="الإسم" autocomplete="off"/>
+                <input type="number" name="seller-price" placeholder="سعر التاجر" autocomplete="off"/>
+                <input type="number" name="price" placeholder="سعر الشراء" autocomplete="off"/>
+                <input type="text" name="client" placeholder="الموكل" autocomplete="off"/>
+                <input type="text" name="gurantee" placeholder="الضمان" autocomplete="off"/>
+                <input type="text" name="code" placeholder="الكود" autocomplete="off"/>
+            </div>
+            <input type="text" name="total" placeholder="الإجمالي: 0" readonly>
+            <div class="actions">
+                <div class="complete-sell">إتمام بيع</div>
+                <div class="print-receipt">طباعة أخر فاتورة</div>
+            </div>
+            <div class="divider"></div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>No.</td>
+                        <td>الإسم</td>
+                        <td>الكود</td>
+                        <td>الموكل</td>
+                        <td>الضمان</td>
+                        <td>السعر</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="complete-customer-sell sell">
+            <div class="btn">إتمام</div>
+            <span class="title">إتمام عملية بيع</span>
+            <main>
+                <input type="text" name="name" placeholder="الإسم"/>
+                <input type="number" name="phone" placeholder="رقم التيليفون"/>
+                <div class="cash">
+                    <div class="item1">
+                        <span id="subtotal"> الإجمالي: 0</span>
+                        <span id="discount">الخصم: 0</span>
+                        <div class="divider"></div>
+                        <span id="total">المبلغ المطلوب: 0</span>
+                    </div>
+                    <div class="item2">
+                        <div>
+                            المدفوع: 
+                            <input type="number" id="paid" autocomplete="off"/>
+                        </div>
+                        <div>
+                            المتبقي: 
+                            <input type="number" id="net"  autocomplete="off" readonly/>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+        </div>
+        <div class="complete-seller-sell sell">
+            <div class="btn">إتمام</div>
+            <span class="title">إتمام عملية بيع</span>
+            <main>
+                <input type="text" name="name" placeholder="الإسم"/>
+                <input type="number" name="phone" placeholder="رقم التيليفون"/>
+                <div class="cash">
+                    <div class="item1">
+                        <span id="subtotal"> الإجمالي: 0</span>
+                        <div class="divider"></div>
+                        <span id="total">المبلغ المطلوب: 0</span>
+                    </div>
+                    <div class="item2">
+                        <div>
+                            المدفوع: 
+                            <input type="number" id="paid" autocomplete="off"/>
+                        </div>
+                        <div>
+                            المتبقي: 
+                            <input type="number" id="net"  autocomplete="off" readonly/>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+        </div>
+    </main>
+    <div class="overlay"></div>
+    <div class="loader"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.3/JsBarcode.all.min.js"></script>
+    <script src="../assets/js/sell.js" type="module"></script>
+    
+</body>
+</html>

@@ -1,0 +1,184 @@
+
+.employees {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding: 0px 10px;
+}
+
+.employee {
+    flex: 1;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.employee .bg {
+    width: 100%;
+    height: 150px;
+}
+
+.employee .profile-img {
+    width: 50%;
+    min-width: 70px;
+    max-width: 130px;
+    display: block;
+    margin: -100px auto 0px;
+}
+
+.employee ul {
+    margin: 0;
+}
+.employee .actions {
+    margin: 0;
+}
+
+.employee .actions div {
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+
+#add-expense-btn , #search-btn {
+    margin: 20px 10px 0px;
+    border: 1px solid var(--mainColor);
+    height: 40px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--mainColor);
+    border: 1px solid var(--mainColor);
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.search-inputs {
+    display: flex;
+    gap: 10px;
+    margin: 10px 10px 0px;
+}
+.search-inputs  input {
+    flex: 1;
+    height: 30px;
+    background-color: var(--grayColor);
+    border: none;
+    outline: none;
+    font-weight: 600;
+    padding: 5px;
+}
+
+#search-btn {
+    margin: 10px 10px 0px;
+}
+
+
+
+/* Add */
+.widget {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    z-index: 1;
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 60%;
+    min-width: 300px;
+    max-height: 100%;
+    overflow: scroll;
+}
+
+.widget  .btn  {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 50%;
+    width: 80px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    text-align: center;
+    color: white;
+    transform: translateX(-50%);
+    background-color: var(--mainColor);
+}
+
+.widget span {
+    margin: 30px 0px 10px;
+    margin-right: -10px;
+    font-size: 18px;
+    position: relative;
+    padding-right: 30px;
+    color: var(--mainColor);
+    font-weight: bold;
+}
+
+.widget  span::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 5px;
+    border: 15px solid transparent;
+    border-right: 20px solid var(--mainColor);
+}
+
+.widget  span::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+    width: 170px;
+    background-color: var(--mainColor);
+    height: 2px;
+}
+
+.widget  input {
+    width: 100%;
+    height: 30px;
+    background-color: var(--grayColor);
+    border: none;
+    outline: none;
+    font-weight: 600;
+}
+
+.widget .raised-date {
+    display: flex;
+    gap: 5px;
+}
+
+.raised-date input  {
+    flex: 1;
+}
+
+.employee-history span {
+    margin-top: 0;
+}
+.gray-btn {
+    background-color: var(--grayColor)!important;
+    border: none!important;
+    color: #818181!important;
+}
+
+/* Table */
+
+table {
+    width: calc(100% - 10px);
+    text-align: center;
+    margin: 0px auto;
+    margin-top: 10px;
+
+}
+table thead tr th {
+    background-color: var(--mainColor);
+    color: white;
+    font-weight: bold;
+}
+table tbody tr td {
+    background-color: var(--grayColor);
+}
+table tbody tr td:nth-child(1) {
+    width: 40px;
+}

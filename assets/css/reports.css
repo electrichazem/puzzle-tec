@@ -1,0 +1,79 @@
+
+h2 {
+    margin: 0;
+    color: var(--mainColor);
+    text-align: center;
+}
+
+h3 {
+    margin: 0;
+    color: var(--mainColor);
+    margin-right: 10px;
+    font-weight: 600;
+}
+
+.report {
+    display: none;
+    font-weight: 650;
+}
+
+.blue {
+    color: var(--mainColor);
+}
+
+.green {
+    color: green;
+    font-weight: bold;
+}
+
+.red {
+    color: rgb(190, 19, 19);
+}
+
+.report .con {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 10px;
+    gap: 5px;
+}
+
+
+table {
+    width: calc(100% - 20px);
+    text-align: center;
+    margin: 10px auto;
+}
+table thead tr td {
+    background-color: var(--mainColor);
+    color: white;
+    font-weight: bold;
+}
+table tbody tr td {
+    background-color: var(--grayColor);
+}
+table tbody .table-input {
+    width: 70px!important;
+}
+
+.custom-date {
+    margin: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.custom-date span {
+    width: 40px;
+    height: 30px;
+    padding: 0px 5px;
+    line-height: 30px;
+    display: inline-block;
+    background-color: var(--mainColor);
+    color: white;
+    font-weight: bold;
+}
+
+.custom-date input {
+    width: calc(100% - 45px);
+}

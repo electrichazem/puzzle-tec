@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فاتورة</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+
+
+        body {
+            margin: 0;
+            padding: 5px;
+            direction: rtl;
+            font-family: Cairo , Arial, Helvetica, sans-serif;
+        }
+        h2 {
+            text-align: center;
+            margin: 10px 50px;
+        }
+        .invoice-data {
+            display: flex;
+            justify-content: center;
+            font-weight: 650;
+        }
+        .invoice-data div span {
+            font-weight: 400;
+            color: rgb(153, 153, 153);
+            margin-right: 10px;
+        }
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            margin: 10px auto;
+            width: 100%;
+            font-size: 14px;
+        }
+        thead {
+            font-weight: 700;
+        }
+        tbody {
+            font-weight: 400;
+        }
+        tr, td {
+            border: 1px solid;
+            padding: 3px 20px;
+        }
+        .light {
+            font-weight: 400;
+        }
+        /* Products */
+        .products {
+            margin: 10px auto 20px;
+            font-size: 14px;
+        }
+        .products  {
+            /* border-collapse: collapse; */
+            width: 95%;
+            text-align: center;
+            margin: 10px auto;
+        }
+        .products thead {
+            font-weight: 700;
+        }
+        .products tbody {
+            font-weight: 400;
+        }
+        .products tr, .products  td {
+            border: 1px solid;
+            padding: 2px;
+        }
+        /* Pay */
+        .pay {
+            width: 60%;
+        }
+        /* Barcode */
+        #barcode {
+            display: block;
+            text-align: center;
+            margin: 0px auto;
+            
+        }
+        .warranty-terms p {
+            font-size: 14px;
+            margin: 0px 20px;
+        }
+        table.products tr td:nth-child(1)  , table.products  tr td:nth-child(3){
+            width: 30px; 
+        }
+        table.products td:nth-child(2) {
+            width: 45%; 
+        }
+        .buttons {
+            display: flex;
+            /* position: absolute;
+            inset: 0; */
+        }
+        .buttons div {
+            flex: 1;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+        .buttons .return {
+            background-color: green;
+        }
+        .buttons .print-receipt {
+            background-color: blue;
+        }
+        @media print {
+            .buttons {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="buttons">
+        <div class="return">رجوع</div>
+        <div class="print-receipt">طباعة</div>
+    </div>
+    <section class="invoice-data">
+        <main>
+            <h2>ورقة ضمان - Warranty Paper</h2>
+            <div id="customer-name" >العميل: <span></span> </div>
+            <div id="customer-phone">رقم الهاتف: <span></span> </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>كود الطلب:</td>
+                        <td>التاريخ:</td>
+                        <td>عدد المنتجات:</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </section>
+    <table class="products">
+        <thead>
+            <tr>
+                <td>No.</td>
+                <td>الوصف</td>
+                <td>الكمية</td>
+                <td>السعر<br><span class="light">جنيه</span></td>
+                <td>الخصم</td>
+                <td>الإجمالي</td>
+                <td>السيريال</td>
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
+    </table>
+    <table class="pay">
+        <thead>
+            <tr>
+                <td>المجموع بالجنيه</td>
+                <td>المدفوع</td>
+                <td>الباقي</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            </tr>
+        </tbody>
+    </table>
+    <svg id="barcode"></svg>
+    <section class="warranty-terms">
+        <h2>شروط الضمان</h2>
+        <p>
+            1- فحص واستلام السلعة جيدا قبل مغادرة المحل المسئولية  تقع علي العميل او المندوب لاستلامها
+            <br>
+            2- شرط اساسي رجوع السلعه في نفس حالة البيع بدون خدش او كسر او قطع او حرق
+            رجوع المنتج بنفس التغليف الخارجي والداخلي بدون قطع او كتابه علي العلبه او بقع او سوائل (بنفس حالة الاستلام).
+            <br>
+            3- عند وجود مشكلة في جهاز العميل مع عدم وجود مشكلة  في المنتج لا يمكن ارجاعها او استبدالها ومسئولية الصيانة تقع علي عاتق العميل
+            <br>
+            
+            <b>            4- ضمان استبدال في حالة توافر نفس المنتج وفي حالة عدم توفره  يتم الاسترجاع ورد قيمة المنتج.            
+            </b>
+        </p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.3/JsBarcode.all.min.js"></script>
+    <script>
+        let printBtn = document.querySelector(".print-receipt");
+        printBtn.addEventListener("click",()=>{
+            print();
+        });
+        let returnBtn = document.querySelector(".return");
+        returnBtn.addEventListener("click",()=>{
+            history.back()
+        });
+        document.addEventListener("keypress",(e)=>{
+            if (e.key == "Enter") {
+                print()
+            }
+            if (e.key == " ") {
+                history.back()
+            }
+        })
+        window.onload = () =>{
+            let data = localStorage.getItem("invoice-data");
+            data = JSON.parse(data);
+            name =  data["name"];
+            phone = data["phone"];
+            products = data["products"] ;
+            if (typeof (products) == "string" ) {
+            products = JSON.parse(data["products"]) ;
+                
+            }
+            date = data["date"];
+            total = data["total"];
+            net = data["net"];
+            phone = data["phone"];
+            code = data["code"];
+            document.querySelector("#customer-name span").textContent = name;
+            document.querySelector("#customer-phone span").textContent = phone;
+            // Elemnets
+            const codeElement = document.createElement("td");
+            codeElement.textContent = code;
+            const dateElement = document.createElement("td");
+            dateElement.textContent = date;
+            const numberOfProducts = document.createElement("td");
+            numberOfProducts.textContent = products.length;
+            // +++++++++
+            document.querySelector(".invoice-data table tbody tr").appendChild(codeElement);
+            document.querySelector(".invoice-data table tbody tr").appendChild(dateElement);
+            document.querySelector(".invoice-data table tbody tr").appendChild(numberOfProducts);
+            // +++++++++++
+
+            // Add products
+            let items = [];
+            let totalDiscount = 0;
+
+            for (const json of products) {
+                const item = json;
+                const key = `${item.name}-${item.client}-${item.gurantee}-${item.price}-${item.customerprice}`;
+                
+                let found = false;
+                for (const existingItem of items) {
+                    if (
+                        existingItem.name === item.name &&
+                        existingItem.client === item.client &&
+                        existingItem.gurantee === item.gurantee &&
+                        existingItem.price === item.price &&
+                        existingItem.customerprice === item.customerprice
+                    ) {
+                        if (item.serial && !existingItem.serial.includes(item.serial)) {
+                            existingItem.serial.push(item.serial);
+                        }
+
+                        // Calculate discount for the current item and update the total discount
+                        const itemDiscount = item.discount || 0;
+                        existingItem.discount += itemDiscount;
+                        totalDiscount += itemDiscount;
+
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    const newItem = {
+                        name: item.name,
+                        client: item.client,
+                        gurantee: item.gurantee,
+                        price: item.price,
+                        customerprice: item.customerprice,
+                        serial: item.serial ? [item.serial] : [],
+                        discount: item.discount || 0
+                    };
+                    
+                    // Update the total discount for the new item
+                    totalDiscount += newItem.discount;
+
+                    items.push(newItem);
+                }
+            }
+
+            let pay = document.querySelector(".pay tbody tr");
+            let totalInEGY = document.createElement("td");
+            totalInEGY.textContent = total - totalDiscount;
+            pay.appendChild(totalInEGY);
+
+            let paidAmount = document.createElement("td");
+            paidAmount.textContent = total - totalDiscount - net;
+            pay.appendChild(paidAmount);
+            
+            let restAmount = document.createElement("td");
+            restAmount.textContent = net || 0;
+            pay.appendChild(restAmount);
+
+            
+            let table = document.querySelector(".products tbody");
+            table.innerHTML = "";
+            for (i=0;i<items.length;i++) {
+                const no = document.createElement("td");
+                no.textContent = i+1;
+                const name = document.createElement("td");
+                name.textContent = items[i]["name"];
+                const qty = document.createElement("td");
+                qty.textContent = items[i]["serial"].length;
+                const price = document.createElement("td");
+                price.textContent = items[i]["customerprice"];
+                const discount = document.createElement("td");
+                discount.textContent = items[i]["discount"];
+                const total = document.createElement("td");
+                total.textContent = items[i]["serial"].length * items[i]["customerprice"] - items[i]["discount"];;
+                const serial = document.createElement("td");
+                serial.innerHTML = items[i]["serial"].join("<br/>");
+                // ++++++++++++++++++++++
+                let tr = document.createElement("tr");
+                tr.appendChild(no);
+                tr.appendChild(name);
+                tr.appendChild(qty);
+                tr.appendChild(price);
+                tr.appendChild(discount);
+                tr.appendChild(total);
+                tr.appendChild(serial);
+                // ++++++++++++++++++++++++++++
+                table.appendChild(tr);
+
+            }
+            JsBarcode("#barcode", code, {width: 1.2,height: 30});
+        }
+        
+    </script>
+</body>
+</html>

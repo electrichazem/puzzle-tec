@@ -25,6 +25,7 @@ aside img {
 
 @media (max-width: 800px) {
     aside {
+        position: absolute;
         top: 0;
         right: 0;
         width: 100%;

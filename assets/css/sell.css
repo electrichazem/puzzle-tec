@@ -1,0 +1,180 @@
+
+
+
+
+.cancle-invoice {
+    display: none;
+}
+
+.invoice {
+    display: none;
+    padding: 10px;
+}
+.invoice span {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: var(--mainColor);
+    font-weight: bold;
+}
+input {
+    width: 100%;
+    height: 30px;
+    background-color: var(--grayColor);
+    border: none;
+    outline: none;
+    font-weight: 600;
+    padding: 5px ;
+}
+.add-manual {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0px;
+}
+.invoice .actions {
+    margin-top: 10px;
+    padding: 0;
+}
+.invoice .actions div {
+    font-size: 14px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+table {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+table thead tr td {
+    background-color: var(--mainColor);
+    color: white;
+    font-weight: bold;
+}
+table tbody tr td {
+    background-color: var(--grayColor);
+}
+table tbody .table-input {
+    width: 70px!important;
+}
+
+
+.sell {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    z-index: 1;
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+    min-width: 300px;
+    max-height: 100%;
+    overflow: auto;
+    padding-top: 30px;
+}
+
+.sell .btn {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 50%;
+    width: 80px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    text-align: center;
+    color: white;
+    transform: translateX(-50%);
+    background-color: var(--mainColor);
+}
+
+.sell .title {
+    margin-right: -10px;
+    font-size: 18px;
+    position: relative;
+    padding-right: 30px;
+    color: var(--mainColor);
+    font-weight: bold;
+}
+
+.sell .title::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    border: 10px solid transparent;
+    border-right: 15px solid var(--mainColor);
+    transform: translateY(-50%); /* Vertically center the arrow */
+}
+
+.sell .title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+    width: 170px;
+    background-color: var(--mainColor);
+    height: 2px;
+}
+
+.sell main {
+    margin-top: 10px;
+}
+
+.sell main .cash {
+    display: flex;
+    margin-top: 5px;
+}
+
+.sell main .item1 {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid black;
+    padding-left: 10px;
+    text-align: center;
+    letter-spacing: 1.2px;
+    font-size: 14px;
+}
+
+.sell main .item2 {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding-right: 10px;
+}
+.sell main .item2 div {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+.sell main .item2 input {
+    display: block;
+}
+
+.sell input {
+    width: 100%;
+    height: 30px;
+    background-color: var(--grayColor);
+    border: none;
+    outline: none;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+
+@media (max-width: 600px){
+    body {
+        font-size: 14px;
+    }
+    
+}
+
+
+.actions .cancle-invoice {
+    border-color: #DB1D2B;
+    color: #DB1D2B;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <link rel="stylesheet" href="../assets/css/root.css">
+    <link rel="stylesheet" href="../assets/css/buy.css">
+    <link rel="stylesheet" href="../assets/css/aside.css">
+    <link rel="stylesheet" href="../assets/css/selling-invoices.css">
+    <title>نقطة البيع</title>
+</head>
+<body>
+    <aside>
+        <img src="../assets/images/cart.png" alt="" val="sell" title="نقطة البيع">
+        <img src="../assets/images/warehouse.png" alt="" val="storage" title="المخزن">
+        <img src="../assets/images/budget.png" alt="" val="buy" title="التجار & الموكلين">
+        <img src="../assets/images/trade.png" alt="" val="invoices" title="الفواتير">
+        <img src="../assets/images/analysis.png" alt="" val="reports" title="التقارير">
+        <img src="../assets/images/return-box.png" alt="" val="returns" title="المرتجعات">
+        <img src="../assets/images/employee.png" alt="" val="employees" title="الموظفين">
+        <img src="../assets/images/expenses.png" alt="" val="store" title="مصروفات المحل">
+    </aside>
+    <main>
+        <header>
+            <a href="/dashboard/">
+                <img src="../../assets/images/logo.png" alt="image">
+            </a>
+            <span>تسجيل خروج</span>
+        </header>
+        <span class="title">الفواتير</span>
+        <section class="filter">
+            <div class="active">الكل</div>
+            <div>عرض فواتير المستهلكين</div>
+            <div>عرض فواتير التجار </div>
+        </section>
+        <section class="inputs">
+            <div class="date-searching">
+                <input type="text" name="day" placeholder="اليوم">
+                <input type="text" name="month" placeholder="الشهر">
+                <input type="text" name="year" placeholder="السنة">
+            </div>
+            <div class="name-searching">
+                <input type="text" name="name" placeholder="الإسم">
+            </div>
+            <div class="code-searching">
+                <input type="text" name="code" placeholder="الكود">
+            </div>
+        </section>
+        <section class="actions">
+            <div id="search-by-date">بحث بالتاريخ</div>
+            <div id="search-by-name">بحث  بالإسم</div>
+            <div id="search-by-code">بحث  بالكود</div>
+        </section>
+        <div class="divider"></div>
+        <h2>الفواتير</h2>
+        <table>
+            <thead>
+                <th>No.</th>
+                <th>الإسم</th>
+                <th>النوع</th>
+                <th>الكود</th>                
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        
+    </main>
+    <div class="overlay"></div>
+    <div class="loader"></div>
+    <script src="../assets/js/selling-invoices.js" type="module"></script>
+    
+</body>
+</html>

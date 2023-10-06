@@ -1,0 +1,91 @@
+
+
+
+.filter {
+    display: flex;
+    border: 1px solid var(--mainColor);
+    margin: 20px 10px 0px;
+}
+
+.filter div {
+    flex: 1;
+    text-align: center;
+    font-weight: 600;
+    color: var(--mainColor);
+    user-select: none;
+}
+
+.filter .active {
+    background-color: var(--mainColor);
+    color: white;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 0px 10px;
+}
+
+.inputs div {
+    display: flex;
+    gap: 10px;
+}
+
+.inputs div input {
+    width: 100%;
+    height: 30px;
+    background-color: var(--grayColor);
+    border: none;
+    outline: none;
+    font-weight: 600;
+    padding: 5px;
+    
+}
+
+.actions {
+    margin-top: 0;
+}
+
+table {
+    width: calc(100% - 10px);
+    text-align: center;
+    margin: 0px auto;
+    margin-top: 10px;
+
+}
+table thead tr th {
+    background-color: var(--mainColor);
+    color: white;
+    font-weight: bold;
+}
+table tbody tr td {
+    background-color: var(--grayColor);
+}
+
+table tbody tr td:nth-child(1) {
+    width: 40px;
+}
+
+table tbody .print,.return {
+    color: white;
+    cursor: pointer;
+    user-select: none;
+}
+table tbody .print {
+    width: 50px;
+    background-color: green;
+}
+
+table tbody .return {
+    width: 60px;
+    background-color: red;
+}
+
+
+h2 {
+    text-align: center;
+    color: var(--mainColor);
+    margin: 0;
+}

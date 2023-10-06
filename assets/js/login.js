@@ -1,7 +1,7 @@
 let form = document.querySelector("form");
 let username = form.name;
 let password = form.password;
-let api = "http://puzzle-technology.000webhostapp.com/";
+let api = "https://192.168.137.1/puzzle-tech/";
 let audio = new Audio("./assets/sounds/error.mp3");
 
 form.addEventListener("submit", async (event) => {
@@ -13,6 +13,7 @@ form.addEventListener("submit", async (event) => {
         try {
             let success = false; // To track successful login
             for (let i = 0; i < 100; i++) {
+                console.log(`${api}login.php?name=${username.value}&password=${password.value}`)
                 let response = await fetch(`${api}login.php?name=${username.value}&password=${password.value}`);
                 let responseData = JSON.parse(await response.text());
                 if (responseData.state === false) {

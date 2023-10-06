@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <link rel="stylesheet" href="../assets/css/root.css">
+    <link rel="stylesheet" href="../assets/css/aside.css">
+    <link rel="stylesheet" href="../assets/css/employees.css">
+    <title>الموظفين</title>
+</head>
+<body>
+    <aside>
+        <img src="../assets/images/cart.png" alt="" val="sell" title="نقطة البيع">
+        <img src="../assets/images/warehouse.png" alt="" val="storage" title="المخزن">
+        <img src="../assets/images/budget.png" alt="" val="buy" title="التجار & الموكلين">
+        <img src="../assets/images/trade.png" alt="" val="invoices" title="الفواتير">
+        <img src="../assets/images/analysis.png" alt="" val="reports" title="التقارير">
+        <img src="../assets/images/return-box.png" alt="" val="returns" title="المرتجعات">
+        <img src="../assets/images/employee.png" alt="" val="employees" title="الموظفين">
+        <img src="../assets/images/expenses.png" alt="" val="store" title="مصروفات المحل">
+    </aside>
+    <main>
+        <header>
+            <a href="/dashboard/">
+                <img src="../../assets/images/logo.png" alt="image">
+            </a>
+            <span>تسجيل خروج</span>
+        </header>
+        <span class="title">الموظفين</span>
+        <div class="employees">
+
+            
+        </div>
+        <div class="edit-personal-data widget">
+            <div class="btn">إضافة</div>
+            <span>تعديل البيانات</span>
+            <input type="number" name="salary" placeholder="المرتب"/>
+            <div class="raised-date">
+                تاريخ القبض:
+                <input type="number" name="raised-date" placeholder="يوم القبض"/>
+            </div>
+        </div>
+        <div class="employee-history widget">
+            <span>السجل</span>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>التاريخ</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </main>
+    
+    <div class="overlay"></div>
+    <div class="loader"></div>
+    <script src="../assets/js/employees.js" type="module"></script>
+    
+</body>
+</html>

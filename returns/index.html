@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <link rel="stylesheet" href="../assets/css/root.css">
+    <link rel="stylesheet" href="../assets/css/aside.css">
+    <link rel="stylesheet" href="../assets/css/returns.css">
+    <title>المرتجعات</title>
+</head>
+<body>
+    <aside>
+        <img src="../assets/images/cart.png" alt="" val="sell" title="نقطة البيع">
+        <img src="../assets/images/warehouse.png" alt="" val="storage" title="المخزن">
+        <img src="../assets/images/budget.png" alt="" val="buy" title="التجار & الموكلين">
+        <img src="../assets/images/trade.png" alt="" val="invoices" title="الفواتير">
+        <img src="../assets/images/analysis.png" alt="" val="reports" title="التقارير">
+        <img src="../assets/images/return-box.png" alt="" val="returns" title="المرتجعات">
+        <img src="../assets/images/employee.png" alt="" val="employees" title="الموظفين">
+        <img src="../assets/images/expenses.png" alt="" val="store" title="مصروفات المحل">
+    </aside>
+    <main>
+        <header>
+            <a href="/dashboard/">
+                <img src="../../assets/images/logo.png" alt="image">
+            </a>
+            <span>تسجيل خروج</span>
+        </header>
+        <span class="title">المرتجعات</span>
+        <div id="add-return-btn">إضافة مرتجع</div>
+        <div class="search-inputs">
+            <input type="text" name="day" placeholder="اليوم">
+            <input type="text" name="month" placeholder="الشهر">
+            <input type="text" name="year" placeholder="السنة">
+        </div>
+        <div id="search-btn">بحث</div>
+        <div class="divider"></div>
+        <table>
+            <thead>
+                <th>No.</th>
+                <th>التاريخ</th>
+                <th>إسم المنتج</th>
+                <th>السيريال</th>
+                <th>سعر الشراء</th>
+                <th>سعر المرتجع</th>
+                <th>فرق الخسارة</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="add-return">
+            <div class="btn">إضافة</div>
+            <span>إضافة مرتجع</span>
+            <input type="text" name="invoice-code" placeholder="كود الفانورة"/>
+            <input type="text" name="product-serial" placeholder="سيريال المنتح"/>
+            <input type="number" name="return-price" placeholder="سعر المرتجع"/>
+            <input type="date" name="date" placeholder="التاريخ"/>
+        </div>
+    </main>
+
+    <div class="overlay"></div>
+    <div class="loader"></div>
+    <script src="../assets/js/returns.js" type="module"></script>
+    
+</body>
+</html>

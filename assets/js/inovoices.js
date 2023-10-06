@@ -128,7 +128,7 @@ function addItemsToTable(invoices) {
                         const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Month is zero-indexed, so we add 1
                         const day = String(currentDate.getDate()).padStart(2, '0');
                         
-                        const formattedDate = `${year}-${month}-${day}`;
+                        const formattedDate = `${day}-${month}-${year}`;
                         updatedData["paid"] =  +updatedData["total_price"] -  +equ ;
                         if (equ == 0) {
                             updatedData["state"] = "closed";
@@ -139,25 +139,31 @@ function addItemsToTable(invoices) {
                         updatedData["history"].push({"date": formattedDate,"added": addedValue.value,"paid": updatedData["paid"],"net": +equ});
     
                         updatedData = JSON.stringify(updatedData);
-                        console.log(updatedData)
+
+                        editReceipt.style.display = "none";
                         // Upload!!!
                         for (let i = 0; i < 100; i++) {
-                            let name = localStorage.getItem("name");
-                            let password = localStorage.getItem("password");
-                            let seller = localStorage.getItem("seller");
-                            let response = await fetch(`${api}edit_seller.php?name=${name}&password=${password}&seller=${seller}&new_data=${updatedData}&index=${index}`);
-                            let responseData = JSON.parse(await response.text());
-                            console.log(responseData)
-                            if (responseData.state === false) {
-                                alert(`خطأ`);
-                                location.href = "/";
-                                break;
-                            } else if (responseData.state === true) {
-                                addedValue.value = ""
-                                alert("تم التعديل بنجاح ");
-                                location.reload()
-                                break;
+                            try {
+                                let name = localStorage.getItem("name");
+                                let password = localStorage.getItem("password");
+                                let seller = localStorage.getItem("seller");
+                                let response = await fetch(`${api}edit_seller.php?name=${name}&password=${password}&seller=${seller}&new_data=${updatedData}&index=${index}`);
+                                let responseData = JSON.parse(await response.text());
+    
+                                if (responseData.state === false) {
+                                    alert(`خطأ`);
+                                    location.href = "/";
+                                    break;
+                                } else if (responseData.state === true) {
+                                    addedValue.value = ""
+                                    alert("تم التعديل بنجاح ");
+                                    location.reload()
+                                    break;
+                                }
+                            }catch {
+                                await new Promise(resolve => setTimeout(resolve, 1000));
                             }
+                           
                         }
                     }
                    
@@ -200,7 +206,6 @@ function addItemsToTable(invoices) {
                 row.appendChild(serial);
                 row.appendChild(client);
                 row.appendChild(guarantee);
-                console.log(row)
                 fitstTable.appendChild(row);
             }
             let lastItem ={};
@@ -222,9 +227,7 @@ function addItemsToTable(invoices) {
                     row.appendChild(net);
                     secondTable.appendChild(row);
                     lastItem = item;
-                }else {
-                    console.log("spam found")
-                }
+                }else {}
             }
             });
             
@@ -354,7 +357,8 @@ let uploadReceipt = document.querySelector(".add-receipt .btn");
 uploadReceipt.addEventListener("click",async()=>{
     const total = document.querySelector("input[name='total']").value.trim();
     const paid = document.querySelector("input[name='paid']").value.trim();
-    const date = document.querySelector("input[name='date']").value.trim();
+    let date = document.querySelector("input[name='date']").value.trim().split("-").reverse().join("-");
+    
 
     if (total.length == 0 || paid.length == 0 || date.length == 0) {
         alert("أدخل البيانات كاملة");
@@ -383,19 +387,24 @@ uploadReceipt.addEventListener("click",async()=>{
             "history": [{"date": date,"added": +paid,"paid": +paid,"net": total-paid}],
         };
         data = JSON.stringify(data);
+        addReceipt.style.display = "none";
         for (let i = 0; i < 100; i++) {
-            let response = await fetch(`${api}buy_products.php?name=${name}&password=${password}&seller=${seller}&data=${data}`);
-            let responseData = JSON.parse(await response.text());
-            console.log(responseData)
-            if (responseData.state === false) {
-                alert(`خطأ`);
-                location.href = "/";
-                break;
-            } else if (responseData.state === true) {
-                alert("تم الإضافة بنجاح");
-                location.reload()
-                break;
+            try {
+                let response = await fetch(`${api}buy_products.php?name=${name}&password=${password}&seller=${seller}&data=${data}`);
+                let responseData = JSON.parse(await response.text());
+                if (responseData.state === false) {
+                    alert(`خطأ`);
+                    location.href = "/";
+                    break;
+                } else if (responseData.state === true) {
+                    alert("تم الإضافة بنجاح");
+                    location.reload()
+                    break;
+                }
+            }catch{
+                await new Promise(resolve => setTimeout(resolve, 1000));
             }
+          
         }
     }
 
